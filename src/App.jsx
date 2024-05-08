@@ -1,7 +1,9 @@
+import Header from "./component/Header";
+
 function App() {
   return (
     <>
-      <h3>contact app</h3>
+      <Header />
     </>
   );
 }
