@@ -9,7 +9,7 @@ function Contacts() {
   const [contact, setContact] = useState({
     id: "",
     name: "",
-    lastname: "",
+    lastName: "",
     email: "",
     phone: "",
   });
@@ -24,7 +24,7 @@ function Contacts() {
   const addHandler = () => {
     if (
       !contact.name ||
-      !contact.lastname ||
+      !contact.lastName ||
       !contact.email ||
       !contact.phone
     ) {
@@ -43,67 +43,21 @@ function Contacts() {
     });
     console.log(contacts);
   };
-  // const addHandler = () => {
-  //   console.log(contact);
-  //   if (
-  //     !contact.name ||
-  //     !contact.lastname ||
-  //     !contact.email ||
-  //     !contact.phone
-  //   ) {
-  //     setAlert("Data Is Not Valid!");
-  //   } else {
-  //     setAlert("");
-  //     const newContact = { ...contact, id: v4() };
-  //     setContacts((contacts) => [...contacts, newContact]);
-  //     setContact({
-  //       name: "",
-  //       lastName: "",
-  //       email: "",
-  //       phone: "",
-  //     });
-  //   }
-  //   console.log(contacts);
-  //   // setContact({
-  //   //   id: "",
-  //   //   name: "",
-  //   //   lastname: "",
-  //   //   email: "",
-  //   //   phone: "",
-  //   // });
-  // };
+
   return (
     <>
       <div>
         <div>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={contact.value}
-            onChange={changeHandler}
-          />
-          <input
-            type="text"
-            name="lastname"
-            placeholder="Last Name"
-            value={contact.value}
-            onChange={changeHandler}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={contact.value}
-            onChange={changeHandler}
-          />
-          <input
-            type="number"
-            name="phone"
-            placeholder="Phone"
-            value={contact.value}
-            onChange={changeHandler}
-          />
+          {inputs.map((input, index) => (
+            <input
+              key={index}
+              type={input.type}
+              name={input.name}
+              placeholder={input.placeholder}
+              value={contact[input.name]}
+              onChange={changeHandler}
+            />
+          ))}
         </div>
         <button onClick={addHandler}>Add Contact</button>
       </div>
