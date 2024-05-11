@@ -2,10 +2,12 @@
 import { useState } from "react";
 import inputs from "../js-files/inputs";
 import { v4 } from "uuid";
+import ContactList from "./ContactList";
 
 function Contacts() {
   //  part states
   const [alert, setAlert] = useState("");
+  const [contacts, setContacts] = useState([]);
   const [contact, setContact] = useState({
     id: "",
     name: "",
@@ -13,7 +15,6 @@ function Contacts() {
     email: "",
     phone: "",
   });
-  const [contacts, setContacts] = useState([]);
   //   part functions
   const changeHandler = (event) => {
     const name = event.target.name;
@@ -41,7 +42,11 @@ function Contacts() {
       email: "",
       phone: "",
     });
-    console.log(contacts);
+    // console.log(contacts);
+  };
+  const deleteHandler = (id) => {
+    const newContacts = contacts.filter((contact) => contact.id !== id);
+    setContacts(newContacts);
   };
 
   return (
@@ -60,8 +65,11 @@ function Contacts() {
           ))}
         </div>
         <button onClick={addHandler}>Add Contact</button>
+        <div>{alert && <p>{alert}</p>}</div>
+        <div>
+          <ContactList contacts={contacts} deleteHandler={deleteHandler} />
+        </div>
       </div>
-      <p>{alert}</p>
     </>
   );
 }
