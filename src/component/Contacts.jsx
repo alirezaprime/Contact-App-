@@ -1,6 +1,7 @@
 //part import
 import { useState } from "react";
 import inputs from "../js-files/inputs";
+import { v4 } from "uuid";
 
 function Contacts() {
   //  part states
@@ -12,6 +13,7 @@ function Contacts() {
     email: "",
     phone: "",
   });
+  const [contacts, setContacts] = useState([]);
   //   part functions
   const changeHandler = (event) => {
     const name = event.target.name;
@@ -20,25 +22,56 @@ function Contacts() {
     // console.log(contact);
   };
   const addHandler = () => {
-    console.log(contact);
-    setContact({
-      id: "",
-      name: "",
-      lastname: "",
-      email: "",
-      phone: "",
-    });
     if (
       !contact.name ||
       !contact.lastname ||
       !contact.email ||
       !contact.phone
     ) {
-      setAlert("Data Is Not Valid!");
-    } else {
-      setAlert("");
+      setAlert("please enter valid data!");
+      return;
     }
+    setAlert("");
+    const newContact = { ...contact, id: v4() };
+    setContacts((contacts) => [...contacts, newContact]);
+    setContact({
+      id: "",
+      name: "",
+      lastName: "",
+      email: "",
+      phone: "",
+    });
+    console.log(contacts);
   };
+  // const addHandler = () => {
+  //   console.log(contact);
+  //   if (
+  //     !contact.name ||
+  //     !contact.lastname ||
+  //     !contact.email ||
+  //     !contact.phone
+  //   ) {
+  //     setAlert("Data Is Not Valid!");
+  //   } else {
+  //     setAlert("");
+  //     const newContact = { ...contact, id: v4() };
+  //     setContacts((contacts) => [...contacts, newContact]);
+  //     setContact({
+  //       name: "",
+  //       lastName: "",
+  //       email: "",
+  //       phone: "",
+  //     });
+  //   }
+  //   console.log(contacts);
+  //   // setContact({
+  //   //   id: "",
+  //   //   name: "",
+  //   //   lastname: "",
+  //   //   email: "",
+  //   //   phone: "",
+  //   // });
+  // };
   return (
     <>
       <div>
