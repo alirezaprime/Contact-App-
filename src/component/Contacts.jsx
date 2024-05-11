@@ -69,25 +69,6 @@ function Contacts() {
         <div className={styles.alert}>{alert && <p>{alert}</p>}</div>
         <ContactList contacts={contacts} deleteHandler={deleteHandler} />
       </div>
-      {/* <div className={styles.container}>
-        <div className={styles.form}>
-          {inputs.map((input, index) => (
-            <input
-              key={index}
-              type={input.type}
-              name={input.name}
-              placeholder={input.placeholder}
-              value={contact[input.name]}
-              onChange={changeHandler}
-            />
-          ))}
-        </div>
-        <button onClick={addHandler}>Add Contact</button>
-        <div className={styles.alert}>{alert && <p>{alert}</p>}</div>
-        <div>
-          <ContactList contacts={contacts} deleteHandler={deleteHandler} />
-        </div>
-      </div> */}
     </>
   );
 }
