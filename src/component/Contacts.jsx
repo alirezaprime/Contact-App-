@@ -3,6 +3,7 @@ import { useState } from "react";
 import inputs from "../js-files/inputs";
 import { v4 } from "uuid";
 import ContactList from "./ContactList";
+import styles from "./Contacts.module.css";
 
 function Contacts() {
   //  part states
@@ -51,8 +52,25 @@ function Contacts() {
 
   return (
     <>
-      <div>
-        <div>
+      <div className={styles.container}>
+        <div className={styles.form}>
+          {inputs.map((input, index) => (
+            <input
+              key={index}
+              type={input.type}
+              placeholder={input.placeholder}
+              name={input.name}
+              value={contact[input.name]}
+              onChange={changeHandler}
+            />
+          ))}
+          <button onClick={addHandler}>Add Contact</button>
+        </div>
+        <div className={styles.alert}>{alert && <p>{alert}</p>}</div>
+        <ContactList contacts={contacts} deleteHandler={deleteHandler} />
+      </div>
+      {/* <div className={styles.container}>
+        <div className={styles.form}>
           {inputs.map((input, index) => (
             <input
               key={index}
@@ -65,11 +83,11 @@ function Contacts() {
           ))}
         </div>
         <button onClick={addHandler}>Add Contact</button>
-        <div>{alert && <p>{alert}</p>}</div>
+        <div className={styles.alert}>{alert && <p>{alert}</p>}</div>
         <div>
           <ContactList contacts={contacts} deleteHandler={deleteHandler} />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
